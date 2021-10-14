@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :customers
+  devise_for :customer, module: :public
   devise_for :admin, controllers: {
     sessions: "admin/sessions"
   }
