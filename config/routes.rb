@@ -12,7 +12,12 @@ Rails.application.routes.draw do
     post "customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe_customers"
     patch "customers/withdraw" => "customers#withdraw", as: "withdraw_customers"
     resources :addresses
-    resources :orders
+    post "orders/confirm" => "orders#confirm", as: "confirm_orders"
+    get "orders/thanks" => "orders#thanks", as: "thanks_orders"
+    post "orders/determine" => "orders#determine", as: "determine_orders"
+    resources :orders, only:[:new, :index, :show]
+    delete "cart_items/destroy_all" => "cart_items#destroy_all", as: "destroy_all_cart_items"
+    resources :cart_items, only:[:index, :update, :destroy, :create]
   end
 
   namespace :admin do
