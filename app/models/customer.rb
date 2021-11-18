@@ -5,5 +5,13 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :orders, dependent: :destroy
-  has_many :address, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
+
+  def cart_total
+    total = 0
+    cart_items.each do |cart_item|
+      total += cart_item.subtotal
+    end
+    return total
+  end
 end
