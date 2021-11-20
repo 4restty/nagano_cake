@@ -7,6 +7,11 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def show
+    @order = Order.find(params[:id])
+    @postage = 800
+  end
+
   def confirm
     @order = Order.new(order_params)
     @postage = 800
@@ -31,7 +36,7 @@ class Public::OrdersController < ApplicationController
     @order.payment = current_customer.cart_total + @order.postage
     @order.save
     current_customer.cart_items.all.each do |cart_item|
-      OrderDetail.create(item_id: cart_item.item_id, amount: cart_item.amount, price: cart_item.subtotal)
+      OrderDetail.create!(item_id: cart_item.item_id, amount: cart_item.amount, price: cart_item.subtotal, order_id: @order.id)
     end
     current_customer.cart_items.destroy_all
     redirect_to thanks_orders_path
