@@ -1,6 +1,11 @@
-<div class="container">
+<div class="container-md">
   <h2 class="m-5">商品一覧</h2>
-  <i class="fas fa-plus-circle"></i>
+  <div class="row my-3 justify-content-end">
+    <%= link_to new_admin_item_path, class: "btn btn-success" do %>
+      <i class="fas fa-plus-circle"></i>
+      <span>新規登録</span>
+    <% end %>
+  </div>
   <table class="table table-border">
     <thead>
       <tr>
