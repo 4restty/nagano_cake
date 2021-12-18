@@ -1,33 +1,45 @@
-<h2>会員情報編集</h2>
-<div>
+<div class="container">
+  <h2 class="m-3">会員情報編集</h2>
+  <div>
   <%= form_with model: @customer, url: customers_path, local:true do |f| %>
-    <div>
-      <%= f.label "氏名" %>
-      <%= f.text_field :last_name %>
-      <%= f.text_field :first_name %>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td><%= f.label "氏名" %></td>
+          <td><%= f.text_field :last_name, class: "form-control" %></td>
+          <td><%= f.text_field :first_name, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "フリガナ" %></td>
+          <td><%= f.text_field :last_name_kana, class: "form-control" %></td>
+          <td><%= f.text_field :first_name_kana, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "郵便番号" %></td>
+          <td><%= f.text_field :postal_code, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "住所" %></td>
+          <td colspan="2"><%= f.text_field :address, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "電話番号" %></td>
+          <td><%= f.text_field :telephone_number, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "メールアドレス" %></td>
+          <td><%= f.text_field :email, class: "form-control" %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+      </div>
+      <div class="col-3">
+        <%= link_to "退会する", unsubscribe_customers_path(@customer), method: :post , class: "btn btn-danger" %>
+      </div>
     </div>
-    <div>
-      <%= f.label "フリガナ" %>
-      <%= f.text_field :last_name_kana %>
-      <%= f.text_field :first_name_kana %>
-    </div>
-    <div>
-      <%= f.label "郵便番号" %>
-      <%= f.text_field :postal_code %>
-    </div>
-    <div>
-      <%= f.label "住所" %>
-      <%= f.text_field :address %>
-    </div>
-    <div>
-      <%= f.label "電話番号" %>
-      <%= f.text_field :telephone_number %>
-    </div>
-    <div>
-      <%= f.label "メールアドレス" %>
-      <%= f.text_field :email %>
-    </div>
-    <%= f.submit "編集内容を保存" %>
-    <%= link_to "退会する", unsubscribe_customers_path(@customer), method: :post %>
   <% end %>
+  </div>
 </div>

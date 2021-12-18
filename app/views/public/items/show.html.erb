@@ -1,9 +1,22 @@
-<%= attachment_image_tag @item, :image %>
-<h2><%= @item.name %></h2>
-<%= @item.introduction %>
-<%= "¥#{@item.with_tax_price}(税込)" %>
-<%= form_with model: CartItem.new, url: cart_items_path, local:true do |f| %>
-  <%= f.hidden_field :item_id, value: @item.id %>
-  <%= f.select :amount, *[1..10], prompt: "個数選択" %>
-  <%= f.submit "カートに入れる" %>
-<% end %>
+<div class="container">
+  <div class="row m-5">
+    <div class="col">
+      <%= attachment_image_tag @item, :image, class: "img-fluid" %>
+    </div>
+    <div class="col">
+      <h4 class="my-auto"><%= @item.name %></h4>
+      <p class="my-2">
+        <%= @item.introduction %>
+      </p>
+      <p class="my-3">
+        <h5><%= "¥#{@item.with_tax_price}" %>(税込)</h5>
+      </p>
+      <%= form_with model: CartItem.new, url: cart_items_path, local:true do |f| %>
+        <%= f.hidden_field :item_id, value: @item.id %>
+        <%= f.select :amount, *[1..10], prompt: "個数選択", class: "form-control" %>
+        <%= f.submit "カートに入れる", class: "btn btn-success ml-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
